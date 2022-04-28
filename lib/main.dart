@@ -1,0 +1,340 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Teknisi Online',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const LauncherPage(),
+      routes: <String, WidgetBuilder>{
+        //'/login': (BuildContext context) => new LoginPage(),
+        '/landing': (BuildContext context) => const LandingPage(),
+      },
+    );
+  }
+}
+
+class LauncherPage extends StatefulWidget {
+  const LauncherPage({Key? key}) : super(key: key);
+
+  @override
+  State<LauncherPage> createState() => _LauncherPageState();
+}
+
+class _LauncherPageState extends State<LauncherPage> {
+  @override
+  void initState() {
+    super.initState();
+    startLaunching();
+  }
+
+  startLaunching() async {
+    var duration = const Duration(seconds: 3);
+    Timer(duration, () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const LandingPage()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: Container(
+          color: Colors.white,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Text('Launcher'),
+                ]),
+          )),
+    ));
+  }
+}
+
+class LandingPage extends StatefulWidget {
+  const LandingPage({Key? key}) : super(key: key);
+
+  @override
+  State<LandingPage> createState() => _LandingPageState();
+}
+
+class _LandingPageState extends State<LandingPage> {
+  int _bottomNavCurrentIndex = 0;
+  final List<Widget> _container = [
+    const Beranda(),
+    const Produk(),
+    const Riwayat(),
+    const Akun()
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: _container[_bottomNavCurrentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            setState(() {
+              _bottomNavCurrentIndex = index;
+            });
+          },
+          currentIndex: _bottomNavCurrentIndex,
+          items: const [
+            BottomNavigationBarItem(
+              activeIcon: Icon(
+                Icons.home,
+                color: Colors.indigo,
+              ),
+              icon: Icon(
+                Icons.home_outlined,
+                color: Colors.grey,
+              ),
+              label: 'Beranda',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(
+                Icons.shopping_cart,
+                color: Colors.indigo,
+              ),
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.grey,
+              ),
+              label: 'Produk',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(
+                Icons.assignment,
+                color: Colors.indigo,
+              ),
+              icon: Icon(
+                Icons.assignment_outlined,
+                color: Colors.grey,
+              ),
+              label: 'Riwayat',
+            ),
+            BottomNavigationBarItem(
+              activeIcon: Icon(
+                Icons.people,
+                color: Colors.indigo,
+              ),
+              icon: Icon(
+                Icons.people_outlined,
+                color: Colors.grey,
+              ),
+              label: 'Akun',
+            )
+          ],
+        ));
+  }
+}
+
+class Beranda extends StatefulWidget {
+  const Beranda({Key? key}) : super(key: key);
+
+  @override
+  _BerandaState createState() => _BerandaState();
+}
+
+class _BerandaState extends State<Beranda> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: Container(
+          color: Colors.white,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  IconButton(
+                    tooltip: 'Panggil Teknisi',
+                    icon: Image.asset("assets/repair.png"),
+                    iconSize: 100,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const OrderPage()));
+                    },
+                  ),
+                  const Text('Panggil Teknisi'),
+                ]),
+          )),
+    ));
+  }
+}
+
+class Produk extends StatefulWidget {
+  const Produk({Key? key}) : super(key: key);
+
+  @override
+  _ProdukState createState() => _ProdukState();
+}
+
+class _ProdukState extends State<Produk> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: Container(
+          color: Colors.white,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Text('Produk'),
+                ]),
+          )),
+    ));
+  }
+}
+
+class Riwayat extends StatefulWidget {
+  const Riwayat({Key? key}) : super(key: key);
+
+  @override
+  _RiwayatState createState() => _RiwayatState();
+}
+
+class _RiwayatState extends State<Riwayat> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: Container(
+          color: Colors.white,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Text('Order'),
+                ]),
+          )),
+    ));
+  }
+}
+
+class Akun extends StatefulWidget {
+  const Akun({Key? key}) : super(key: key);
+
+  @override
+  _AkunState createState() => _AkunState();
+}
+
+class _AkunState extends State<Akun> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: Container(
+          color: Colors.white,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Text('Akun'),
+                ]),
+          )),
+    ));
+  }
+}
+
+class OrderPage extends StatefulWidget {
+  const OrderPage({Key? key}) : super(key: key);
+
+  @override
+  _OrderPageState createState() => _OrderPageState();
+}
+
+class _OrderPageState extends State<OrderPage> {
+  final _formKey = GlobalKey<FormState>();
+  String dropdownValue1 = 'Pilih';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text("Panggil Teknisi")),
+        body: Container(
+            margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(labelText: 'Alamat :'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Alamat belum diisi';
+                      }
+                      return null;
+                    },
+                  ),
+                  DropdownButtonFormField<String>(
+                    value: dropdownValue1,
+                    icon: const Icon(Icons.arrow_downward),
+                    elevation: 16,
+                    style: const TextStyle(color: Colors.deepPurple),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue1 = newValue!;
+                      });
+                    },
+                    decoration:
+                        const InputDecoration(labelText: 'Pilih Kota :'),
+                    validator: (value) {
+                      if (value == "Pilih") {
+                        return 'Kota Belum Dipilih';
+                      }
+                      return null;
+                    },
+                    items: <String>[
+                      'Pilih',
+                      'Jakarta Barat',
+                      'Jakarta Pusat',
+                      'Jakarta Selatan',
+                      'Jakarta Timur'
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Validate returns true if the form is valid, or false otherwise.
+                        if (_formKey.currentState!.validate()) {
+                          // If the form is valid, display a snackbar. In the real world,
+                          // you'd often call a server or save the information in a database.
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+                          );
+                        }
+                      },
+                      child: const Text('Submit'),
+                    ),
+                  ),
+                ],
+              ),
+            )));
+  }
+}
