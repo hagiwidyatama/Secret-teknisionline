@@ -97,7 +97,7 @@ class _LandingPageState extends State<LandingPage> {
             BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.home,
-                color: Colors.indigo,
+                color: Colors.blue,
               ),
               icon: Icon(
                 Icons.home_outlined,
@@ -108,7 +108,7 @@ class _LandingPageState extends State<LandingPage> {
             BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.shopping_cart,
-                color: Colors.indigo,
+                color: Colors.blue,
               ),
               icon: Icon(
                 Icons.shopping_cart_outlined,
@@ -119,7 +119,7 @@ class _LandingPageState extends State<LandingPage> {
             BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.assignment,
-                color: Colors.indigo,
+                color: Colors.blue,
               ),
               icon: Icon(
                 Icons.assignment_outlined,
@@ -130,7 +130,7 @@ class _LandingPageState extends State<LandingPage> {
             BottomNavigationBarItem(
               activeIcon: Icon(
                 Icons.people,
-                color: Colors.indigo,
+                color: Colors.blue,
               ),
               icon: Icon(
                 Icons.people_outlined,
@@ -154,29 +154,30 @@ class _BerandaState extends State<Beranda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: const Text("Teknisi Online")),
         body: SafeArea(
-      child: Container(
-          color: Colors.white,
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    tooltip: 'Panggil Teknisi',
-                    icon: Image.asset("assets/repair.png"),
-                    iconSize: 100,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const OrderPage()));
-                    },
-                  ),
-                  const Text('Panggil Teknisi'),
-                ]),
-          )),
-    ));
+          child: Container(
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      IconButton(
+                        tooltip: 'Panggil Teknisi',
+                        icon: Image.asset("assets/repair.png"),
+                        iconSize: 100,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const OrderPage()));
+                        },
+                      ),
+                      const Text('Panggil Teknisi'),
+                    ]),
+              )),
+        ));
   }
 }
 
@@ -191,17 +192,18 @@ class _ProdukState extends State<Produk> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: const Text("Produk")),
         body: SafeArea(
-      child: Container(
-          color: Colors.white,
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text('Produk'),
-                ]),
-          )),
-    ));
+          child: Container(
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text('Produk'),
+                    ]),
+              )),
+        ));
   }
 }
 
@@ -216,17 +218,18 @@ class _RiwayatState extends State<Riwayat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: const Text("Riwayat Teknisi")),
         body: SafeArea(
-      child: Container(
-          color: Colors.white,
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text('Order'),
-                ]),
-          )),
-    ));
+          child: Container(
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text('Order'),
+                    ]),
+              )),
+        ));
   }
 }
 
@@ -241,17 +244,18 @@ class _AkunState extends State<Akun> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: const Text("Akun")),
         body: SafeArea(
-      child: Container(
-          color: Colors.white,
-          child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text('Akun'),
-                ]),
-          )),
-    ));
+          child: Container(
+              color: Colors.white,
+              child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text('Akun'),
+                    ]),
+              )),
+        ));
   }
 }
 
@@ -265,6 +269,7 @@ class OrderPage extends StatefulWidget {
 class _OrderPageState extends State<OrderPage> {
   final _formKey = GlobalKey<FormState>();
   String dropdownValue1 = 'Pilih';
+  String dropdownValue2 = 'Pilih';
 
   @override
   Widget build(BuildContext context) {
@@ -293,6 +298,9 @@ class _OrderPageState extends State<OrderPage> {
                     style: const TextStyle(color: Colors.deepPurple),
                     onChanged: (String? newValue) {
                       setState(() {
+                        if (dropdownValue1 != newValue) {
+                          dropdownValue2 = 'Pilih';
+                        }
                         dropdownValue1 = newValue!;
                       });
                     },
@@ -317,14 +325,227 @@ class _OrderPageState extends State<OrderPage> {
                       );
                     }).toList(),
                   ),
+                  Column(
+                    children: [
+                      // Only one of the children will be shown based on `beforeSunset` condition
+                      if (dropdownValue1 == "Jakarta Barat") ...[
+                        DropdownButtonFormField<String>(
+                          value: dropdownValue2,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue!;
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              labelText: 'Pilih Kecamatan :'),
+                          validator: (value) {
+                            if (value == "Pilih") {
+                              return 'Kecamatan Belum Dipilih';
+                            }
+                            return null;
+                          },
+                          items: <String>[
+                            'Pilih',
+                            'Cengkareng',
+                            'Grogol',
+                            'Petamburan',
+                            'Taman Sari',
+                            'Tambora',
+                            'Kebon Jeruk',
+                            'Kalideres',
+                            'Palmerah',
+                            'Kembangan'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ] else if (dropdownValue1 == "Jakarta Pusat") ...[
+                        DropdownButtonFormField<String>(
+                          value: dropdownValue2,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue!;
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              labelText: 'Pilih Kecamatan :'),
+                          validator: (value) {
+                            if (value == "Pilih") {
+                              return 'Kecamatan Belum Dipilih';
+                            }
+                            return null;
+                          },
+                          items: <String>[
+                            'Pilih',
+                            'Cempaka Putih',
+                            'Gambir',
+                            'Johar Baru',
+                            'Kemayoran',
+                            'Menteng',
+                            'Sawah Besar',
+                            'Senen',
+                            'Tanah Abang'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ] else if (dropdownValue1 == "Jakarta Selatan") ...[
+                        DropdownButtonFormField<String>(
+                          value: dropdownValue2,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue!;
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              labelText: 'Pilih Kecamatan :'),
+                          validator: (value) {
+                            if (value == "Pilih") {
+                              return 'Kecamatan Belum Dipilih';
+                            }
+                            return null;
+                          },
+                          items: <String>[
+                            'Pilih',
+                            'Cilandak',
+                            'Jagakarsa',
+                            'Kebayoran Baru',
+                            'Kebayoran Lama',
+                            'Mampang Prapatan',
+                            'Pancoran',
+                            'Pasar Minggu',
+                            'Pesanggrahan',
+                            'Setiabudi',
+                            'Tebet'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ] else if (dropdownValue1 == "Jakarta Timur") ...[
+                        DropdownButtonFormField<String>(
+                          value: dropdownValue2,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue!;
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              labelText: 'Pilih Kecamatan :'),
+                          validator: (value) {
+                            if (value == "Pilih") {
+                              return 'Kecamatan Belum Dipilih';
+                            }
+                            return null;
+                          },
+                          items: <String>[
+                            'Pilih',
+                            'Cakung',
+                            'Cipayung',
+                            'Ciracas',
+                            'Duren Sawit',
+                            'Jatinegara',
+                            'Kramat Jati',
+                            'Makasar',
+                            'Matraman',
+                            'Pasar Rebo',
+                            'Pulo Gadung'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ] else if (dropdownValue1 == "Jakarta Utara") ...[
+                        DropdownButtonFormField<String>(
+                          value: dropdownValue2,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue!;
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              labelText: 'Pilih Kecamatan :'),
+                          validator: (value) {
+                            if (value == "Pilih") {
+                              return 'Kecamatan Belum Dipilih';
+                            }
+                            return null;
+                          },
+                          items: <String>[
+                            'Pilih',
+                            'Cilincing',
+                            'Kelapa Gading',
+                            'Koja',
+                            'Pademangan',
+                            'Penjaringan',
+                            'Tanjung Priok'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ] else ...[
+                        DropdownButtonFormField<String>(
+                          value: dropdownValue2,
+                          icon: const Icon(Icons.arrow_downward),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownValue2 = newValue!;
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              labelText: 'Pilih Kecamatan :'),
+                          validator: (value) {
+                            if (value == "Pilih") {
+                              return 'Kecamatan Belum Dipilih';
+                            }
+                            return null;
+                          },
+                          items: <String>['Pilih']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ],
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
                           );
