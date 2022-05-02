@@ -57,8 +57,9 @@ class _LauncherPageState extends State<LauncherPage> {
           child: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text('Launcher'),
+                children: <Widget>[
+                  Image.asset("assets/repair.png"),
+                  const Text('Launcher'),
                 ]),
           )),
     ));
@@ -154,30 +155,190 @@ class _BerandaState extends State<Beranda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Teknisi Online")),
-        body: SafeArea(
-          child: Container(
-              color: Colors.white,
-              child: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Teknisi Online"),
+      ),
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                height: 250,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: const DecorationImage(
+                        image: AssetImage("assets/repair.png"),
+                        fit: BoxFit.cover)),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient:
+                          LinearGradient(begin: Alignment.bottomRight, colors: [
+                        Colors.black.withOpacity(.4),
+                        Colors.black.withOpacity(.2),
+                      ])),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      IconButton(
-                        tooltip: 'Panggil Teknisi',
-                        icon: Image.asset("assets/repair.png"),
-                        iconSize: 100,
-                        onPressed: () {
+                      const Text(
+                        "Teknisi Handal",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      GestureDetector(
+                        onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       const OrderPage()));
                         },
+                        child: Container(
+                          height: 50,
+                          margin: const EdgeInsets.symmetric(horizontal: 40),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: Center(
+                              child: Text(
+                            "Panggil Teknisi",
+                            style: TextStyle(
+                                color: Colors.grey[900],
+                                fontWeight: FontWeight.bold),
+                          )),
+                        ),
                       ),
-                      const Text('Panggil Teknisi'),
-                    ]),
-              )),
-        ));
+                      const SizedBox(
+                        height: 30,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                  child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: [
+                  Card(
+                    color: Colors.transparent,
+                    elevation: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/repair.png"),
+                              fit: BoxFit.cover)),
+                      child: Transform.translate(
+                        offset: const Offset(50, -50),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 65, vertical: 63),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: const Icon(
+                            Icons.bookmark_border,
+                            size: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    color: Colors.transparent,
+                    elevation: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/repair.png"),
+                              fit: BoxFit.cover)),
+                      child: Transform.translate(
+                        offset: const Offset(50, -50),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 65, vertical: 63),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: const Icon(
+                            Icons.bookmark_border,
+                            size: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    color: Colors.transparent,
+                    elevation: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/repair.png"),
+                              fit: BoxFit.cover)),
+                      child: Transform.translate(
+                        offset: const Offset(50, -50),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 65, vertical: 63),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: const Icon(
+                            Icons.bookmark_border,
+                            size: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    color: Colors.transparent,
+                    elevation: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/repair.png"),
+                              fit: BoxFit.cover)),
+                      child: Transform.translate(
+                        offset: const Offset(50, -50),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 65, vertical: 63),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: const Icon(
+                            Icons.bookmark_border,
+                            size: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ))
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -192,17 +353,324 @@ class _ProdukState extends State<Produk> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Produk")),
+        appBar: AppBar(centerTitle: true, title: const Text("Produk")),
         body: SafeArea(
           child: Container(
-              color: Colors.white,
-              child: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text('Produk'),
-                    ]),
-              )),
+            padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                    child: GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+                  children: [
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage("assets/repair.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(50, -50),
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 65, vertical: 63),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white),
+                            child: const Icon(
+                              Icons.bookmark_border,
+                              size: 15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ))
+              ],
+            ),
+          ),
         ));
   }
 }
@@ -218,7 +686,7 @@ class _RiwayatState extends State<Riwayat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Riwayat Teknisi")),
+        appBar: AppBar(centerTitle: true, title: const Text("Riwayat Teknisi")),
         body: SafeArea(
           child: Container(
               color: Colors.white,
@@ -244,7 +712,7 @@ class _AkunState extends State<Akun> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Akun")),
+        appBar: AppBar(centerTitle: true, title: const Text("Akun")),
         body: SafeArea(
           child: Container(
               color: Colors.white,
@@ -274,7 +742,7 @@ class _OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Panggil Teknisi")),
+        appBar: AppBar(centerTitle: true, title: const Text("Panggil Teknisi")),
         body: Container(
             margin: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Form(
