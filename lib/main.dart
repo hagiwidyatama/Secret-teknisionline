@@ -228,106 +228,126 @@ class _BerandaState extends State<Beranda> {
               ),
               Expanded(
                   child: GridView.count(
-                crossAxisCount: 2,
+                crossAxisCount: 4,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 children: [
-                  Card(
-                    color: Colors.transparent,
-                    elevation: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/repair.png"),
-                              fit: BoxFit.cover)),
-                      child: Transform.translate(
-                        offset: const Offset(50, -50),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 63),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
-                          child: const Icon(
-                            Icons.bookmark_border,
-                            size: 15,
-                          ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const PembayaranPage()));
+                    },
+                    child: Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/dompet.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(0, 42),
+                          child: Center(
+                              child: Text(
+                            "Pembayaran",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.grey[900],
+                                fontWeight: FontWeight.bold),
+                          )),
                         ),
                       ),
                     ),
                   ),
-                  Card(
-                    color: Colors.transparent,
-                    elevation: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/repair.png"),
-                              fit: BoxFit.cover)),
-                      child: Transform.translate(
-                        offset: const Offset(50, -50),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 63),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
-                          child: const Icon(
-                            Icons.bookmark_border,
-                            size: 15,
-                          ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const OrderPage()));
+                    },
+                    child: Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/pemanggilan.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(0, 42),
+                          child: Center(
+                              child: Text(
+                            "Pemanggilan",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.grey[900],
+                                fontWeight: FontWeight.bold),
+                          )),
                         ),
                       ),
                     ),
                   ),
-                  Card(
-                    color: Colors.transparent,
-                    elevation: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/repair.png"),
-                              fit: BoxFit.cover)),
-                      child: Transform.translate(
-                        offset: const Offset(50, -50),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 63),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
-                          child: const Icon(
-                            Icons.bookmark_border,
-                            size: 15,
-                          ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const HelpdeskPage()));
+                    },
+                    child: Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/telepon.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(0, 42),
+                          child: Center(
+                              child: Text(
+                            "Helpdesk",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.grey[900],
+                                fontWeight: FontWeight.bold),
+                          )),
                         ),
                       ),
                     ),
                   ),
-                  Card(
-                    color: Colors.transparent,
-                    elevation: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/repair.png"),
-                              fit: BoxFit.cover)),
-                      child: Transform.translate(
-                        offset: const Offset(50, -50),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 63),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
-                          child: const Icon(
-                            Icons.bookmark_border,
-                            size: 15,
-                          ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const BantuanPage()));
+                    },
+                    child: Card(
+                      color: Colors.transparent,
+                      elevation: 0,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/bantuan.png"),
+                                fit: BoxFit.cover)),
+                        child: Transform.translate(
+                          offset: const Offset(0, 42),
+                          child: Center(
+                              child: Text(
+                            "Bantuan",
+                            style: TextStyle(
+                                fontSize: 10,
+                                color: Colors.grey[900],
+                                fontWeight: FontWeight.bold),
+                          )),
                         ),
                       ),
                     ),
@@ -1025,5 +1045,53 @@ class _OrderPageState extends State<OrderPage> {
                 ],
               ),
             )));
+  }
+}
+
+class PembayaranPage extends StatefulWidget {
+  const PembayaranPage({Key? key}) : super(key: key);
+
+  @override
+  _PembayaranPageState createState() => _PembayaranPageState();
+}
+
+class _PembayaranPageState extends State<PembayaranPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(centerTitle: true, title: const Text("Pembayaran")),
+        body: Container());
+  }
+}
+
+class HelpdeskPage extends StatefulWidget {
+  const HelpdeskPage({Key? key}) : super(key: key);
+
+  @override
+  _HelpdeskPageState createState() => _HelpdeskPageState();
+}
+
+class _HelpdeskPageState extends State<HelpdeskPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(centerTitle: true, title: const Text("Helpdesk")),
+        body: Container());
+  }
+}
+
+class BantuanPage extends StatefulWidget {
+  const BantuanPage({Key? key}) : super(key: key);
+
+  @override
+  _BantuanPageState createState() => _BantuanPageState();
+}
+
+class _BantuanPageState extends State<BantuanPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(centerTitle: true, title: const Text("Bantuan")),
+        body: Container());
   }
 }
