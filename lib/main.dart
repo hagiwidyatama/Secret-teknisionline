@@ -58,8 +58,8 @@ class _LauncherPageState extends State<LauncherPage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset("assets/repair.png"),
-                  const Text('Launcher'),
+                  Image.asset("assets/teknisionline.png"),
+                  const Text('Teknisi Online'),
                 ]),
           )),
     ));
@@ -168,30 +168,23 @@ class _BerandaState extends State<Beranda> {
                 width: double.infinity,
                 height: 250,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(6),
                     image: const DecorationImage(
-                        image: AssetImage("assets/repair.png"),
+                        image: AssetImage("assets/wallpaper.jpg"),
                         fit: BoxFit.cover)),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient:
-                          LinearGradient(begin: Alignment.bottomRight, colors: [
-                        Colors.black.withOpacity(.4),
-                        Colors.black.withOpacity(.2),
-                      ])),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      const Text(
-                        "Teknisi Handal",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold),
+                      Image.asset(
+                        "assets/teknisionline.png",
+                        height: 100,
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 15,
                       ),
                       GestureDetector(
                         onTap: () {
@@ -205,13 +198,13 @@ class _BerandaState extends State<Beranda> {
                           height: 50,
                           margin: const EdgeInsets.symmetric(horizontal: 40),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
-                          child: Center(
+                              borderRadius: BorderRadius.circular(6),
+                              color: const Color.fromRGBO(0, 0, 0, .7)),
+                          child: const Center(
                               child: Text(
                             "Panggil Teknisi",
                             style: TextStyle(
-                                color: Colors.grey[900],
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           )),
                         ),
@@ -393,7 +386,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -418,7 +411,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -443,7 +436,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -468,7 +461,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -493,7 +486,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -518,7 +511,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -543,7 +536,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -568,7 +561,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -593,7 +586,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -618,7 +611,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -643,7 +636,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -668,7 +661,7 @@ class _ProdukState extends State<Produk> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage("assets/repair.png"),
+                                image: AssetImage("assets/komputer.png"),
                                 fit: BoxFit.cover)),
                         child: Transform.translate(
                           offset: const Offset(50, -50),
@@ -774,7 +767,7 @@ class _OrderPageState extends State<OrderPage> {
                     decoration: const InputDecoration(labelText: 'Alamat :'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Alamat belum diisi';
+                        return 'Alamat Belum Diisi';
                       }
                       return null;
                     },
@@ -783,7 +776,7 @@ class _OrderPageState extends State<OrderPage> {
                     value: dropdownValue1,
                     icon: const Icon(Icons.arrow_downward),
                     elevation: 16,
-                    style: const TextStyle(color: Colors.deepPurple),
+                    style: const TextStyle(color: Colors.blue),
                     onChanged: (String? newValue) {
                       setState(() {
                         if (dropdownValue1 != newValue) {
@@ -805,7 +798,8 @@ class _OrderPageState extends State<OrderPage> {
                       'Jakarta Barat',
                       'Jakarta Pusat',
                       'Jakarta Selatan',
-                      'Jakarta Timur'
+                      'Jakarta Timur',
+                      'Jakarta Utara'
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -815,13 +809,12 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                   Column(
                     children: [
-                      // Only one of the children will be shown based on `beforeSunset` condition
                       if (dropdownValue1 == "Jakarta Barat") ...[
                         DropdownButtonFormField<String>(
                           value: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: const TextStyle(color: Colors.blue),
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue2 = newValue!;
@@ -858,7 +851,7 @@ class _OrderPageState extends State<OrderPage> {
                           value: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: const TextStyle(color: Colors.blue),
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue2 = newValue!;
@@ -894,7 +887,7 @@ class _OrderPageState extends State<OrderPage> {
                           value: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: const TextStyle(color: Colors.blue),
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue2 = newValue!;
@@ -932,7 +925,7 @@ class _OrderPageState extends State<OrderPage> {
                           value: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: const TextStyle(color: Colors.blue),
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue2 = newValue!;
@@ -970,7 +963,7 @@ class _OrderPageState extends State<OrderPage> {
                           value: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: const TextStyle(color: Colors.blue),
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue2 = newValue!;
@@ -1004,7 +997,7 @@ class _OrderPageState extends State<OrderPage> {
                           value: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
-                          style: const TextStyle(color: Colors.deepPurple),
+                          style: const TextStyle(color: Colors.blue),
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue2 = newValue!;
@@ -1056,11 +1049,145 @@ class PembayaranPage extends StatefulWidget {
 }
 
 class _PembayaranPageState extends State<PembayaranPage> {
+  final _formKey = GlobalKey<FormState>();
+  String dropdownValue1 = 'Pilih';
+  String dropdownValue2 = 'Pilih';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(centerTitle: true, title: const Text("Pembayaran")),
-        body: Container());
+        body: Container(
+          margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Card(
+                child: ListTile(
+                  leading: Image(image: AssetImage("assets/dompet.png")),
+                  title: Text('Rp. 0,-'),
+                ),
+              ),
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: Form(
+                      key: _formKey,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                  labelText: 'Nomor HP Pengirim :'),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Nomor HP Pengirim Belum Diisi';
+                                }
+                                return null;
+                              },
+                            ),
+                            DropdownButtonFormField<String>(
+                              value: dropdownValue1,
+                              icon: const Icon(Icons.arrow_downward),
+                              elevation: 16,
+                              style: const TextStyle(color: Colors.blue),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  if (dropdownValue1 != newValue) {
+                                    dropdownValue2 = 'Pilih';
+                                  }
+                                  dropdownValue1 = newValue!;
+                                });
+                              },
+                              decoration: const InputDecoration(
+                                  labelText: 'Pilih Metode Pembayaran :'),
+                              validator: (value) {
+                                if (value == "Pilih") {
+                                  return 'Metode Pembayaran Belum Dipilih';
+                                }
+                                return null;
+                              },
+                              items: <String>[
+                                'Pilih',
+                                'DANA',
+                                'Gopay',
+                                'LinkAja',
+                                'OVO'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                            Column(
+                              children: [
+                                if (dropdownValue1 == "DANA") ...[
+                                  const Card(
+                                    child: ListTile(
+                                      leading: Image(
+                                          image:
+                                              AssetImage("assets/logodana.png"),
+                                          height: 10),
+                                      title: Text(
+                                          "Nomor DANA Teknisi Online : 080000000000"),
+                                    ),
+                                  ),
+                                ] else if (dropdownValue1 == "Gopay") ...[
+                                  const Card(
+                                    child: ListTile(
+                                      leading: Image(
+                                          image: AssetImage(
+                                              "assets/logogopay.png"),
+                                          height: 10),
+                                      title: Text(
+                                          "Nomor Gopay Teknisi Online : 080000000000"),
+                                    ),
+                                  ),
+                                ] else if (dropdownValue1 == "LinkAja") ...[
+                                  const Card(
+                                    child: ListTile(
+                                      leading: Image(
+                                          image: AssetImage(
+                                              "assets/logolinkaja.png"),
+                                          height: 20),
+                                      title: Text(
+                                          "Nomor LinkAja Teknisi Online : 080000000000"),
+                                    ),
+                                  ),
+                                ] else if (dropdownValue1 == "OVO") ...[
+                                  const Card(
+                                    child: ListTile(
+                                      leading: Image(
+                                          image:
+                                              AssetImage("assets/logoovo.png"),
+                                          height: 10),
+                                      title: Text(
+                                          "Nomor OVO Teknisi Online : 080000000000"),
+                                    ),
+                                  ),
+                                ] else
+                                  ...[],
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text('Processing Data')),
+                                    );
+                                  }
+                                },
+                                child: const Text('Submit'),
+                              ),
+                            ),
+                          ])))
+            ],
+          ),
+        ));
   }
 }
 
