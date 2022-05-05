@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import 'dart:convert';
+
+// import this to easily send HTTP request
+import 'package:http/http.dart' as http;
+
 void main() {
   runApp(const MyApp());
 }
@@ -696,21 +701,61 @@ class Riwayat extends StatefulWidget {
 }
 
 class _RiwayatState extends State<Riwayat> {
+  List snapshot = [];
+  Future<List> _loadData() async {
+    List posts = [];
+    try {
+      // This is an open REST API endpoint for testing purposes
+      const api = 'https://jsonplaceholder.typicode.com/posts';
+
+      final http.Response response = await http.get(Uri.parse(api));
+      posts = json.decode(response.body);
+    } catch (err) {
+      //print(err);
+      //https://www.kindacode.com/article/flutter-futurebuilder/
+    }
+
+    return posts;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(centerTitle: true, title: const Text("Riwayat Teknisi")),
-        body: SafeArea(
-          child: Container(
-              color: Colors.white,
-              child: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text('Order'),
-                    ]),
-              )),
-        ));
+        appBar: AppBar(
+            centerTitle: true,
+            title: const Text("Riwayat Teknisi"),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.refresh),
+                tooltip: 'Reload',
+                onPressed: () {
+                  setState(() {
+                    snapshot = [];
+                    _loadData();
+                  });
+                },
+              ),
+            ]),
+        body: FutureBuilder(
+            future: _loadData(),
+            builder: (BuildContext ctx, AsyncSnapshot snapshot) =>
+                snapshot.hasData
+                    ? ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (BuildContext context, index) => Card(
+                          margin: const EdgeInsets.all(10),
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.all(10),
+                            leading: const Image(
+                                image: AssetImage("assets/teknisionline.png")),
+                            title: Text(snapshot.data![index]['title']),
+                            subtitle: Text(snapshot.data![index]['body']),
+                          ),
+                        ),
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      )));
   }
 }
 
@@ -1199,11 +1244,86 @@ class HelpdeskPage extends StatefulWidget {
 }
 
 class _HelpdeskPageState extends State<HelpdeskPage> {
+  List snapshot = [];
+  Future<List> _loadData() async {
+    List posts = [];
+    try {
+      // This is an open REST API endpoint for testing purposes
+      const api = 'https://jsonplaceholder.typicode.com/posts';
+
+      final http.Response response = await http.get(Uri.parse(api));
+      posts = json.decode(response.body);
+    } catch (err) {
+      //print(err);
+      //https://www.kindacode.com/article/flutter-futurebuilder/
+    }
+
+    return posts;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(centerTitle: true, title: const Text("Helpdesk")),
-        body: Container());
+      appBar: AppBar(centerTitle: true, title: const Text("Helpdesk")),
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: FutureBuilder(
+                  future: _loadData(),
+                  builder: (BuildContext ctx, AsyncSnapshot snapshot) =>
+                      snapshot.hasData
+                          ? ListView.builder(
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (BuildContext context, index) =>
+                                  Card(
+                                margin: const EdgeInsets.all(10),
+                                child: ListTile(
+                                  contentPadding: const EdgeInsets.all(10),
+                                  leading: const Image(
+                                      image: AssetImage(
+                                          "assets/teknisionline.png")),
+                                  title: Text(snapshot.data![index]['title']),
+                                  subtitle: Text(snapshot.data![index]['body']),
+                                ),
+                              ),
+                            )
+                          : const Center(
+                              child: CircularProgressIndicator(),
+                            )),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      TextFormField(
+                        decoration: const InputDecoration(labelText: 'Pesan :'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Pesan Belum Diisi';
+                          }
+                          return null;
+                        },
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Submit'),
+                      ),
+                    ])),
+          ],
+        ),
+      ),
+    );
   }
 }
 
