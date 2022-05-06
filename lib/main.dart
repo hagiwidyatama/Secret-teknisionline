@@ -1252,7 +1252,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     List posts = [];
     try {
       // This is an open REST API endpoint for testing purposes
-      const api = 'https://jsonplaceholder.typicode.com/posts';
+      const api = 'https://teknisionline-srv.000webhostapp.com/helpdesk.php';
 
       final http.Response response = await http.get(Uri.parse(api));
       posts = json.decode(response.body);
@@ -1308,11 +1308,18 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                                 margin: const EdgeInsets.all(10),
                                 child: ListTile(
                                   contentPadding: const EdgeInsets.all(10),
-                                  leading: const Image(
-                                      image: AssetImage(
-                                          "assets/teknisionline.png")),
-                                  title: Text(snapshot.data![index]['title']),
-                                  subtitle: Text(snapshot.data![index]['body']),
+                                  leading: Image(
+                                      image: snapshot.data![index]
+                                                  ['idprofil'] ==
+                                              "1"
+                                          ? const AssetImage(
+                                              "assets/teknisionline.png")
+                                          : const AssetImage(
+                                              "assets/telepon.png")),
+                                  title:
+                                      Text(snapshot.data![index]['idprofil']),
+                                  subtitle:
+                                      Text(snapshot.data![index]['pesan']),
                                 ),
                               ),
                             )
