@@ -1245,6 +1245,9 @@ class HelpdeskPage extends StatefulWidget {
 
 class _HelpdeskPageState extends State<HelpdeskPage> {
   List snapshot = [];
+  final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollcontroller = ScrollController();
+
   Future<List> _loadData() async {
     List posts = [];
     try {
@@ -1266,10 +1269,29 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     super.initState();
   }
 
+  void _scrollDown() {
+    _scrollcontroller.jumpTo(_scrollcontroller.position.maxScrollExtent);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text("Helpdesk")),
+      appBar: AppBar(
+          centerTitle: true,
+          title: const Text("Helpdesk"),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              tooltip: 'Reload',
+              onPressed: () {
+                setState(() {
+                  snapshot = [];
+                  _loadData();
+                  _scrollDown();
+                });
+              },
+            ),
+          ]),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -1279,6 +1301,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                   builder: (BuildContext ctx, AsyncSnapshot snapshot) =>
                       snapshot.hasData
                           ? ListView.builder(
+                              controller: _scrollcontroller,
                               itemCount: snapshot.data!.length,
                               itemBuilder: (BuildContext context, index) =>
                                   Card(
@@ -1297,29 +1320,31 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                               child: CircularProgressIndicator(),
                             )),
             ),
-            const SizedBox(
-              height: 10,
-            ),
             Container(
-                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      TextFormField(
-                        decoration: const InputDecoration(labelText: 'Pesan :'),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Pesan Belum Diisi';
-                          }
-                          return null;
-                        },
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Submit'),
-                      ),
-                    ])),
+                padding: const EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 5.0),
+                child: Column(children: <Widget>[
+                  TextFormField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                        labelText: 'Pesan :',
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                //_controller.text = _controller.text.toString() + '123';
+                                _controller.clear();
+                                _loadData();
+                                _scrollDown();
+                              });
+                            },
+                            icon: const Icon(Icons.send))),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Pesan Belum Diisi';
+                      }
+                      return null;
+                    },
+                  ),
+                ])),
           ],
         ),
       ),
