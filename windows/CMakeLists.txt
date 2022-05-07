@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(teknisionline LANGUAGES CXX)
+project(sitech_online LANGUAGES CXX)
 
-set(BINARY_NAME "teknisionline")
+set(BINARY_NAME "sitech_online")
 
 cmake_policy(SET CMP0063 NEW)
 

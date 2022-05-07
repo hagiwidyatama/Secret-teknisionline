@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "teknisionline" "\0"
+            VALUE "FileDescription", "sitech_online" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "teknisionline" "\0"
+            VALUE "InternalName", "sitech_online" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "teknisionline.exe" "\0"
-            VALUE "ProductName", "teknisionline" "\0"
+            VALUE "OriginalFilename", "sitech_online.exe" "\0"
+            VALUE "ProductName", "sitech_online" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

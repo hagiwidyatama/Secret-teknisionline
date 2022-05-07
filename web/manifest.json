@@ -1,6 +1,6 @@
 {
-    "name": "teknisionline",
-    "short_name": "teknisionline",
+    "name": "sitech_online",
+    "short_name": "sitech_online",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Teknisi Online',
+      title: 'Sitech Online',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -63,8 +63,8 @@ class _LauncherPageState extends State<LauncherPage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset("assets/teknisionline.png"),
-                  const Text('Teknisi Online'),
+                  Image.asset("assets/sitechonline.png"),
+                  const Text('Sitech Online'),
                 ]),
           )),
     ));
@@ -162,7 +162,7 @@ class _BerandaState extends State<Beranda> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Teknisi Online"),
+        title: const Text("Sitech Online"),
       ),
       body: SafeArea(
         child: Container(
@@ -185,7 +185,7 @@ class _BerandaState extends State<Beranda> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Image.asset(
-                        "assets/teknisionline.png",
+                        "assets/sitechonline.png",
                         height: 100,
                       ),
                       const SizedBox(
@@ -747,7 +747,7 @@ class _RiwayatState extends State<Riwayat> {
                           child: ListTile(
                             contentPadding: const EdgeInsets.all(10),
                             leading: const Image(
-                                image: AssetImage("assets/teknisionline.png")),
+                                image: AssetImage("assets/sitechonline.png")),
                             title: Text(snapshot.data![index]['title']),
                             subtitle: Text(snapshot.data![index]['body']),
                           ),
@@ -1174,7 +1174,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               AssetImage("assets/logodana.png"),
                                           height: 10),
                                       title: Text(
-                                          "Nomor DANA Teknisi Online : 080000000000"),
+                                          "Nomor DANA Sitech Online : 080000000000"),
                                     ),
                                   ),
                                 ] else if (dropdownValue1 == "Gopay") ...[
@@ -1185,7 +1185,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               "assets/logogopay.png"),
                                           height: 10),
                                       title: Text(
-                                          "Nomor Gopay Teknisi Online : 080000000000"),
+                                          "Nomor Gopay Sitech Online : 080000000000"),
                                     ),
                                   ),
                                 ] else if (dropdownValue1 == "LinkAja") ...[
@@ -1196,7 +1196,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               "assets/logolinkaja.png"),
                                           height: 20),
                                       title: Text(
-                                          "Nomor LinkAja Teknisi Online : 080000000000"),
+                                          "Nomor LinkAja Sitech Online : 080000000000"),
                                     ),
                                   ),
                                 ] else if (dropdownValue1 == "OVO") ...[
@@ -1207,7 +1207,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               AssetImage("assets/logoovo.png"),
                                           height: 10),
                                       title: Text(
-                                          "Nomor OVO Teknisi Online : 080000000000"),
+                                          "Nomor OVO Sitech Online : 080000000000"),
                                     ),
                                   ),
                                 ] else
@@ -1264,6 +1264,42 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     return posts;
   }
 
+  Future<http.Response> _kirimData(String pesan) {
+    var resBody = {};
+    resBody["idprofil"] = "2";
+    resBody["pesan"] = pesan;
+    String str = json.encode(resBody);
+    String api =
+        'https://teknisionline-srv.000webhostapp.com/updatehelpdesk.php?json=' +
+            str;
+    // print(api);
+    return http.get(Uri.parse(Uri.encodeFull(api)));
+  }
+
+  /*Future<String> _sendData() async {
+//    json.encode(value);
+    String post = "";
+    var resBody = {};
+    resBody["idprofil"] = "2";
+    resBody["pesan"] = "Pesan dari guest";
+    String str = json.encode(resBody);
+    try {
+      // This is an open REST API endpoint for testing purposes
+      String api =
+          'https://teknisionline-srv.000webhostapp.com/helpdeskupdate.php?json=' +
+              str;
+
+      final http.Response response =
+          await http.get(Uri.parse(Uri.encodeFull(api)));
+      post = response.toString();
+      //posts = json.decode(response.body);
+    } catch (err) {
+      //print(err);
+      //https://www.kindacode.com/article/flutter-futurebuilder/
+    }
+    return post;
+  }
+*/
   @override
   void initState() {
     super.initState();
@@ -1305,7 +1341,6 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                               itemCount: snapshot.data!.length,
                               itemBuilder: (BuildContext context, index) =>
                                   Card(
-                                margin: const EdgeInsets.all(10),
                                 child: ListTile(
                                   contentPadding: const EdgeInsets.all(10),
                                   leading: Image(
@@ -1313,11 +1348,13 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                                                   ['idprofil'] ==
                                               "1"
                                           ? const AssetImage(
-                                              "assets/teknisionline.png")
+                                              "assets/sitechonline.png")
                                           : const AssetImage(
-                                              "assets/telepon.png")),
+                                              "assets/user.png")),
                                   title:
-                                      Text(snapshot.data![index]['idprofil']),
+                                      snapshot.data![index]['idprofil'] == "1"
+                                          ? const Text("Admin")
+                                          : const Text("Guest"),
                                   subtitle:
                                       Text(snapshot.data![index]['pesan']),
                                 ),
@@ -1338,9 +1375,17 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                             onPressed: () {
                               setState(() {
                                 //_controller.text = _controller.text.toString() + '123';
-                                _controller.clear();
-                                _loadData();
-                                _scrollDown();
+                                //_kirimData(_controller.text);
+                                if (_controller.text != "") {
+                                  _kirimData(_controller.text).whenComplete(() {
+                                    _controller.clear();
+                                    var duration = const Duration(seconds: 5);
+                                    Timer(duration, () {
+                                      _loadData()
+                                          .whenComplete(() => _scrollDown());
+                                    });
+                                  });
+                                }
                               });
                             },
                             icon: const Icon(Icons.send))),

@@ -1,4 +1,4 @@
-package com.example.teknisionline
+package com.example.sitech_online
 
 import io.flutter.embedding.android.FlutterActivity
 
