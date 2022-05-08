@@ -1245,6 +1245,7 @@ class HelpdeskPage extends StatefulWidget {
 
 class _HelpdeskPageState extends State<HelpdeskPage> {
   List snapshot = [];
+  List tmpsnapshot = [];
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollcontroller = ScrollController();
 
@@ -1254,7 +1255,10 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
       // This is an open REST API endpoint for testing purposes
       const api = 'https://teknisionline-srv.000webhostapp.com/helpdesk.php';
 
-      final http.Response response = await http.get(Uri.parse(api));
+      final http.Response response = await http.get(Uri.parse(api), headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-cache"
+      });
       posts = json.decode(response.body);
     } catch (err) {
       //print(err);
@@ -1273,7 +1277,10 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
         'https://teknisionline-srv.000webhostapp.com/updatehelpdesk.php?json=' +
             str;
     // print(api);
-    return http.get(Uri.parse(Uri.encodeFull(api)));
+    return http.get(Uri.parse(Uri.encodeFull(api)), headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-cache"
+    });
   }
 
   /*Future<String> _sendData() async {
@@ -1300,13 +1307,74 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     return post;
   }
 */
+  bool isJSON(String input) {
+    try {
+      jsonDecode(input);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  }
+
   @override
   void initState() {
     super.initState();
   }
 
-  void _scrollDown() {
+  Future _scrollDown() async {
     _scrollcontroller.jumpTo(_scrollcontroller.position.maxScrollExtent);
+  }
+
+/*  String pesanupdated = "";
+  Future<dynamic> jsond() async {
+    Map<String, dynamic> pesanupdate = jsonDecode(snapshot.toString());
+    return pesanupdate;
+  }
+*
+  String pesanupd = "";
+*/
+  Future _looping() async {
+    //var count = 0.0;
+    bool flag = true;
+
+    var futureThatStopsIt =
+        Future.delayed(const Duration(milliseconds: 500), () {
+      flag = false;
+    });
+
+    var futureWithTheLoop = () async {
+      while (flag) {
+        //pesanupdated.length;
+        //count++;
+        //print("going on: $count");
+        if (isJSON(snapshot.toString())) {
+          if (tmpsnapshot == snapshot) {
+            await _loadData();
+          } else {
+            await _loadData().then((value) {
+              if (isJSON(snapshot.toString())) {
+                if (tmpsnapshot == snapshot) {
+                  //print("tes");
+
+                  //Map<String, dynamic> pesanupdated =
+                  //  jsonDecode(snapshot.toString());
+
+                  //print(pesanupdated[pesanupdated.length].toString());
+
+                  _scrollDown().then((value) => flag = false);
+                }
+              }
+            });
+          }
+        }
+
+        await Future.delayed(const Duration(seconds: 0));
+      }
+    }();
+
+    await Future.wait([futureThatStopsIt, futureWithTheLoop]);
+
+    //print(count);
   }
 
   @override
@@ -1374,16 +1442,16 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                         suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
-                                //_controller.text = _controller.text.toString() + '123';
-                                //_kirimData(_controller.text);
                                 if (_controller.text != "") {
-                                  _kirimData(_controller.text).whenComplete(() {
-                                    _controller.clear();
-                                    var duration = const Duration(seconds: 5);
-                                    Timer(duration, () {
-                                      _loadData()
-                                          .whenComplete(() => _scrollDown());
-                                    });
+                                  tmpsnapshot = snapshot;
+                                  _kirimData(_controller.text).then((value) {
+                                    if (value.body.toString() == "OK") {
+                                      _controller.clear();
+
+                                      _looping().then((value) {
+                                        _scrollDown();
+                                      });
+                                    }
                                   });
                                 }
                               });
