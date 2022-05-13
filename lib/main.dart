@@ -1253,13 +1253,42 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     List posts = [];
     try {
       // This is an open REST API endpoint for testing purposes
-      const api = 'https://teknisionline-srv.000webhostapp.com/helpdesk.php';
+      const api = 'http://sitech.0fees.us/helpdesk.php';
 
       final http.Response response = await http.get(Uri.parse(api), headers: {
         "Content-Type": "application/json",
         "Cache-Control": "no-cache"
       });
       posts = json.decode(response.body);
+
+// TO-DO
+/*   
+      final ioc = HttpClient();
+      ioc.badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+      final httpx = IOClient(ioc);
+      const api = 'http://sitech.0fees.us/helpdesk.php';
+      final http.Response response = await httpx.get(Uri.parse(api), headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-cache"
+      });
+      posts = json.decode(response.body);
+*/
+/*
+      await httpx.get(Uri.parse(api), headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-cache"
+      }).then((response) {
+        //print("Reponse status : ${response.statusCode}");
+        //print("Response body : ${response.body}");
+        //var myresponse = jsonDecode(response.body);
+        //String token = myresponse["token"];
+        posts = json.decode(response.body);
+      });
+
+     
+ 
+ */
     } catch (err) {
       //print(err);
       //https://www.kindacode.com/article/flutter-futurebuilder/
@@ -1273,40 +1302,13 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     resBody["idprofil"] = "2";
     resBody["pesan"] = pesan;
     String str = json.encode(resBody);
-    String api =
-        'https://teknisionline-srv.000webhostapp.com/updatehelpdesk.php?json=' +
-            str;
-    // print(api);
+    String api = 'http://sitech.0fees.us/updatehelpdesk.php?json=' + str;
     return http.get(Uri.parse(Uri.encodeFull(api)), headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-cache"
     });
   }
 
-  /*Future<String> _sendData() async {
-//    json.encode(value);
-    String post = "";
-    var resBody = {};
-    resBody["idprofil"] = "2";
-    resBody["pesan"] = "Pesan dari guest";
-    String str = json.encode(resBody);
-    try {
-      // This is an open REST API endpoint for testing purposes
-      String api =
-          'https://teknisionline-srv.000webhostapp.com/helpdeskupdate.php?json=' +
-              str;
-
-      final http.Response response =
-          await http.get(Uri.parse(Uri.encodeFull(api)));
-      post = response.toString();
-      //posts = json.decode(response.body);
-    } catch (err) {
-      //print(err);
-      //https://www.kindacode.com/article/flutter-futurebuilder/
-    }
-    return post;
-  }
-*/
   bool isJSON(String input) {
     try {
       jsonDecode(input);
@@ -1322,59 +1324,49 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
   }
 
   Future _scrollDown() async {
-    _scrollcontroller.jumpTo(_scrollcontroller.position.maxScrollExtent);
+    _scrollcontroller.jumpTo(_scrollcontroller.position.maxScrollExtent * 2);
   }
 
-/*  String pesanupdated = "";
-  Future<dynamic> jsond() async {
-    Map<String, dynamic> pesanupdate = jsonDecode(snapshot.toString());
-    return pesanupdate;
+/*
+  void _showToast(BuildContext context, String _toast) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(_toast),
+      ),
+    );
   }
-*
-  String pesanupd = "";
 */
-  Future _looping() async {
-    //var count = 0.0;
+  Future _looping(String str) async {
     bool flag = true;
 
-    var futureThatStopsIt =
-        Future.delayed(const Duration(milliseconds: 500), () {
+    var futureThatStopsIt = Future.delayed(const Duration(seconds: 2), () {
       flag = false;
     });
 
     var futureWithTheLoop = () async {
       while (flag) {
-        //pesanupdated.length;
-        //count++;
-        //print("going on: $count");
         if (isJSON(snapshot.toString())) {
           if (tmpsnapshot == snapshot) {
-            await _loadData();
-          } else {
-            await _loadData().then((value) {
-              if (isJSON(snapshot.toString())) {
-                if (tmpsnapshot == snapshot) {
-                  //print("tes");
-
-                  //Map<String, dynamic> pesanupdated =
-                  //  jsonDecode(snapshot.toString());
-
-                  //print(pesanupdated[pesanupdated.length].toString());
-
-                  _scrollDown().then((value) => flag = false);
+            _loadData();
+          } else if (tmpsnapshot != snapshot) {
+            _loadData().then((value) {
+              Map<String, dynamic> map = jsonDecode(value.toString());
+              if (map[map.length]["pesan"] == str) {
+                if (isJSON(value.toString())) {
+                  if (tmpsnapshot != snapshot) {
+                    flag = false;
+                    //_scrollDown();
+                  }
                 }
               }
             });
           }
         }
-
         await Future.delayed(const Duration(seconds: 0));
       }
     }();
-
     await Future.wait([futureThatStopsIt, futureWithTheLoop]);
-
-    //print(count);
   }
 
   @override
@@ -1389,6 +1381,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
               tooltip: 'Reload',
               onPressed: () {
                 setState(() {
+                  //_showToast(context, "Loading");
                   snapshot = [];
                   _loadData();
                   _scrollDown();
@@ -1440,21 +1433,24 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                     decoration: InputDecoration(
                         labelText: 'Pesan :',
                         suffixIcon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                if (_controller.text != "") {
-                                  tmpsnapshot = snapshot;
-                                  _kirimData(_controller.text).then((value) {
-                                    if (value.body.toString() == "OK") {
-                                      _controller.clear();
+                            onPressed: () async {
+                              if (_controller.text != "") {
+                                tmpsnapshot = snapshot;
 
-                                      _looping().then((value) {
+                                _kirimData(_controller.text).then((value) {
+                                  if (value.body.toString() == "OK") {
+                                    //_showToast(context, "Kirim Pesan");
+
+                                    _looping(_controller.text.toString())
+                                        .then((value) {
+                                      _loadData().then((value) {
+                                        _controller.clear();
                                         _scrollDown();
                                       });
-                                    }
-                                  });
-                                }
-                              });
+                                    });
+                                  }
+                                });
+                              }
                             },
                             icon: const Icon(Icons.send))),
                     validator: (value) {
