@@ -153,7 +153,7 @@ class Beranda extends StatefulWidget {
   const Beranda({Key? key}) : super(key: key);
 
   @override
-  _BerandaState createState() => _BerandaState();
+  State<Beranda> createState() => _BerandaState();
 }
 
 class _BerandaState extends State<Beranda> {
@@ -364,7 +364,7 @@ class Produk extends StatefulWidget {
   const Produk({Key? key}) : super(key: key);
 
   @override
-  _ProdukState createState() => _ProdukState();
+  State<Produk> createState() => _ProdukState();
 }
 
 class _ProdukState extends State<Produk> {
@@ -697,7 +697,7 @@ class Riwayat extends StatefulWidget {
   const Riwayat({Key? key}) : super(key: key);
 
   @override
-  _RiwayatState createState() => _RiwayatState();
+  State<Riwayat> createState() => _RiwayatState();
 }
 
 class _RiwayatState extends State<Riwayat> {
@@ -763,7 +763,7 @@ class Akun extends StatefulWidget {
   const Akun({Key? key}) : super(key: key);
 
   @override
-  _AkunState createState() => _AkunState();
+  State<Akun> createState() => _AkunState();
 }
 
 class _AkunState extends State<Akun> {
@@ -789,7 +789,7 @@ class OrderPage extends StatefulWidget {
   const OrderPage({Key? key}) : super(key: key);
 
   @override
-  _OrderPageState createState() => _OrderPageState();
+  State<OrderPage> createState() => _OrderPageState();
 }
 
 class _OrderPageState extends State<OrderPage> {
@@ -1090,7 +1090,7 @@ class PembayaranPage extends StatefulWidget {
   const PembayaranPage({Key? key}) : super(key: key);
 
   @override
-  _PembayaranPageState createState() => _PembayaranPageState();
+  State<PembayaranPage> createState() => _PembayaranPageState();
 }
 
 class _PembayaranPageState extends State<PembayaranPage> {
@@ -1240,7 +1240,7 @@ class HelpdeskPage extends StatefulWidget {
   const HelpdeskPage({Key? key}) : super(key: key);
 
   @override
-  _HelpdeskPageState createState() => _HelpdeskPageState();
+  State<HelpdeskPage> createState() => _HelpdeskPageState();
 }
 
 class _HelpdeskPageState extends State<HelpdeskPage> {
@@ -1302,7 +1302,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     resBody["idprofil"] = "2";
     resBody["pesan"] = pesan;
     String str = json.encode(resBody);
-    String api = 'http://sitech.0fees.us/updatehelpdesk.php?json=' + str;
+    String api = 'http://sitech.0fees.us/updatehelpdesk.php?json=$str';
     return http.get(Uri.parse(Uri.encodeFull(api)), headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-cache"
@@ -1472,7 +1472,7 @@ class BantuanPage extends StatefulWidget {
   const BantuanPage({Key? key}) : super(key: key);
 
   @override
-  _BantuanPageState createState() => _BantuanPageState();
+  State<BantuanPage> createState() => _BantuanPageState();
 }
 
 class _BantuanPageState extends State<BantuanPage> {
