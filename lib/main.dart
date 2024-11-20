@@ -774,10 +774,10 @@ class _AkunState extends State<Akun> {
         body: SafeArea(
           child: Container(
               color: Colors.white,
-              child: Center(
+              child: const Center(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
+                    children: <Widget>[
                       Text('Akun'),
                     ]),
               )),
