@@ -43,7 +43,7 @@ class _LauncherPageState extends State<LauncherPage> {
     startLaunching();
   }
 
-  startLaunching() async {
+  Future<void> startLaunching() async {
     var duration = const Duration(seconds: 3);
     Timer(duration, () {
       Navigator.pushReplacement(
@@ -1352,7 +1352,8 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
           } else if (tmpsnapshot != snapshot) {
             _loadData().then((value) {
               Map<String, dynamic> map = jsonDecode(value.toString());
-              if (map[map.length]["pesan"] == str) {
+//              if (map[map.length]["pesan"] == str) {
+              if (map["pesan"] == str) {
                 if (isJSON(value.toString())) {
                   if (tmpsnapshot != snapshot) {
                     flag = false;
