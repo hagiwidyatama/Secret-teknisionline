@@ -818,7 +818,7 @@ class _OrderPageState extends State<OrderPage> {
                     },
                   ),
                   DropdownButtonFormField<String>(
-                    value: dropdownValue1,
+                    initialValue: dropdownValue1,
                     icon: const Icon(Icons.arrow_downward),
                     elevation: 16,
                     style: const TextStyle(color: Colors.blue),
@@ -856,7 +856,7 @@ class _OrderPageState extends State<OrderPage> {
                     children: [
                       if (dropdownValue1 == "Jakarta Barat") ...[
                         DropdownButtonFormField<String>(
-                          value: dropdownValue2,
+                          initialValue: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
                           style: const TextStyle(color: Colors.blue),
@@ -893,7 +893,7 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ] else if (dropdownValue1 == "Jakarta Pusat") ...[
                         DropdownButtonFormField<String>(
-                          value: dropdownValue2,
+                          initialValue: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
                           style: const TextStyle(color: Colors.blue),
@@ -929,7 +929,7 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ] else if (dropdownValue1 == "Jakarta Selatan") ...[
                         DropdownButtonFormField<String>(
-                          value: dropdownValue2,
+                          initialValue: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
                           style: const TextStyle(color: Colors.blue),
@@ -967,7 +967,7 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ] else if (dropdownValue1 == "Jakarta Timur") ...[
                         DropdownButtonFormField<String>(
-                          value: dropdownValue2,
+                          initialValue: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
                           style: const TextStyle(color: Colors.blue),
@@ -1005,7 +1005,7 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ] else if (dropdownValue1 == "Jakarta Utara") ...[
                         DropdownButtonFormField<String>(
-                          value: dropdownValue2,
+                          initialValue: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
                           style: const TextStyle(color: Colors.blue),
@@ -1039,7 +1039,7 @@ class _OrderPageState extends State<OrderPage> {
                         ),
                       ] else ...[
                         DropdownButtonFormField<String>(
-                          value: dropdownValue2,
+                          initialValue: dropdownValue2,
                           icon: const Icon(Icons.arrow_downward),
                           elevation: 16,
                           style: const TextStyle(color: Colors.blue),
@@ -1131,7 +1131,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                               },
                             ),
                             DropdownButtonFormField<String>(
-                              value: dropdownValue1,
+                              initialValue: dropdownValue1,
                               icon: const Icon(Icons.arrow_downward),
                               elevation: 16,
                               style: const TextStyle(color: Colors.blue),
@@ -1253,7 +1253,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     List posts = [];
     try {
       // This is an open REST API endpoint for testing purposes
-      const api = 'http://sitech.0fees.us/helpdesk.php';
+      const api = 'http://teknisionline.freedev.app/helpdesk.php';
 
       final http.Response response = await http.get(Uri.parse(api), headers: {
         "Content-Type": "application/json",
@@ -1302,7 +1302,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     resBody["idprofil"] = "2";
     resBody["pesan"] = pesan;
     String str = json.encode(resBody);
-    String api = 'http://sitech.0fees.us/updatehelpdesk.php?json=$str';
+    String api = 'http://teknisionline.freedev.app/updatehelpdesk.php?json=$str';
     return http.get(Uri.parse(Uri.encodeFull(api)), headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-cache"
