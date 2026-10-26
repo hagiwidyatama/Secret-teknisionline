@@ -1,4 +1,4 @@
-package com.example.sitech_online
+package com.example.hawilang_online
 
 import io.flutter.embedding.android.FlutterActivity
 

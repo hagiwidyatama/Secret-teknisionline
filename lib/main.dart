@@ -6,17 +6,25 @@ import 'dart:convert';
 // import this to easily send HTTP request
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(const MyApp());
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://pfdwgnsjljkpexdsbeay.supabase.co',
+    publishableKey: 'sb_publishable_EwXbauoWbVUGnt7HpzOz4w_tWpKO1Ki',
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sitech Online',
+      title: 'hawilang Online',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -30,7 +38,7 @@ class MyApp extends StatelessWidget {
 }
 
 class LauncherPage extends StatefulWidget {
-  const LauncherPage({Key? key}) : super(key: key);
+  const LauncherPage({super.key});
 
   @override
   State<LauncherPage> createState() => _LauncherPageState();
@@ -63,8 +71,8 @@ class _LauncherPageState extends State<LauncherPage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset("assets/sitechonline.png"),
-                  const Text('Sitech Online'),
+                  Image.asset("assets/hawilangonline.png"),
+                  const Text('hawilang Online'),
                 ]),
           )),
     ));
@@ -72,7 +80,7 @@ class _LauncherPageState extends State<LauncherPage> {
 }
 
 class LandingPage extends StatefulWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  const LandingPage({super.key});
 
   @override
   State<LandingPage> createState() => _LandingPageState();
@@ -150,7 +158,7 @@ class _LandingPageState extends State<LandingPage> {
 }
 
 class Beranda extends StatefulWidget {
-  const Beranda({Key? key}) : super(key: key);
+  const Beranda({super.key});
 
   @override
   State<Beranda> createState() => _BerandaState();
@@ -162,7 +170,7 @@ class _BerandaState extends State<Beranda> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Sitech Online"),
+        title: const Text("hawilang Online"),
       ),
       body: SafeArea(
         child: Container(
@@ -185,7 +193,7 @@ class _BerandaState extends State<Beranda> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Image.asset(
-                        "assets/sitechonline.png",
+                        "assets/hawilangonline.png",
                         height: 100,
                       ),
                       const SizedBox(
@@ -361,7 +369,7 @@ class _BerandaState extends State<Beranda> {
 }
 
 class Produk extends StatefulWidget {
-  const Produk({Key? key}) : super(key: key);
+  const Produk({super.key});
 
   @override
   State<Produk> createState() => _ProdukState();
@@ -694,7 +702,7 @@ class _ProdukState extends State<Produk> {
 }
 
 class Riwayat extends StatefulWidget {
-  const Riwayat({Key? key}) : super(key: key);
+  const Riwayat({super.key});
 
   @override
   State<Riwayat> createState() => _RiwayatState();
@@ -747,7 +755,7 @@ class _RiwayatState extends State<Riwayat> {
                           child: ListTile(
                             contentPadding: const EdgeInsets.all(10),
                             leading: const Image(
-                                image: AssetImage("assets/sitechonline.png")),
+                                image: AssetImage("assets/hawilangonline.png")),
                             title: Text(snapshot.data![index]['title']),
                             subtitle: Text(snapshot.data![index]['body']),
                           ),
@@ -760,7 +768,7 @@ class _RiwayatState extends State<Riwayat> {
 }
 
 class Akun extends StatefulWidget {
-  const Akun({Key? key}) : super(key: key);
+  const Akun({super.key});
 
   @override
   State<Akun> createState() => _AkunState();
@@ -786,7 +794,7 @@ class _AkunState extends State<Akun> {
 }
 
 class OrderPage extends StatefulWidget {
-  const OrderPage({Key? key}) : super(key: key);
+  const OrderPage({super.key});
 
   @override
   State<OrderPage> createState() => _OrderPageState();
@@ -1087,7 +1095,7 @@ class _OrderPageState extends State<OrderPage> {
 }
 
 class PembayaranPage extends StatefulWidget {
-  const PembayaranPage({Key? key}) : super(key: key);
+  const PembayaranPage({super.key});
 
   @override
   State<PembayaranPage> createState() => _PembayaranPageState();
@@ -1174,7 +1182,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               AssetImage("assets/logodana.png"),
                                           height: 10),
                                       title: Text(
-                                          "Nomor DANA Sitech Online : 080000000000"),
+                                          "Nomor DANA hawilang Online : 080000000000"),
                                     ),
                                   ),
                                 ] else if (dropdownValue1 == "Gopay") ...[
@@ -1185,7 +1193,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               "assets/logogopay.png"),
                                           height: 10),
                                       title: Text(
-                                          "Nomor Gopay Sitech Online : 080000000000"),
+                                          "Nomor Gopay hawilang Online : 080000000000"),
                                     ),
                                   ),
                                 ] else if (dropdownValue1 == "LinkAja") ...[
@@ -1196,7 +1204,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               "assets/logolinkaja.png"),
                                           height: 20),
                                       title: Text(
-                                          "Nomor LinkAja Sitech Online : 080000000000"),
+                                          "Nomor LinkAja hawilang Online : 080000000000"),
                                     ),
                                   ),
                                 ] else if (dropdownValue1 == "OVO") ...[
@@ -1207,7 +1215,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                                               AssetImage("assets/logoovo.png"),
                                           height: 10),
                                       title: Text(
-                                          "Nomor OVO Sitech Online : 080000000000"),
+                                          "Nomor OVO hawilang Online : 080000000000"),
                                     ),
                                   ),
                                 ] else
@@ -1237,7 +1245,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
 }
 
 class HelpdeskPage extends StatefulWidget {
-  const HelpdeskPage({Key? key}) : super(key: key);
+  const HelpdeskPage({super.key});
 
   @override
   State<HelpdeskPage> createState() => _HelpdeskPageState();
@@ -1249,6 +1257,10 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollcontroller = ScrollController();
 
+  final _loadData = Supabase.instance.client
+      .from('helpdesk')
+      .select();
+/*
   Future<List> _loadData() async {
     List posts = [];
     try {
@@ -1261,13 +1273,14 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
       });
       posts = json.decode(response.body);
 
+
 // TO-DO
 /*   
       final ioc = HttpClient();
       ioc.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
       final httpx = IOClient(ioc);
-      const api = 'http://sitech.0fees.us/helpdesk.php';
+      const api = 'http://hawilang.0fees.us/helpdesk.php';
       final http.Response response = await httpx.get(Uri.parse(api), headers: {
         "Content-Type": "application/json",
         "Cache-Control": "no-cache"
@@ -1295,7 +1308,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     }
 
     return posts;
-  }
+  }*/
 
   Future<http.Response> _kirimData(String pesan) {
     var resBody = {};
@@ -1346,19 +1359,24 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
 
     var futureWithTheLoop = () async {
       while (flag) {
+        //pesanupdated.length;
+        //count++;
+        //print("going on: $count");
         if (isJSON(snapshot.toString())) {
           if (tmpsnapshot == snapshot) {
-            _loadData();
-          } else if (tmpsnapshot != snapshot) {
-            _loadData().then((value) {
-              Map<String, dynamic> map = jsonDecode(value.toString());
-//              if (map[map.length]["pesan"] == str) {
-              if (map["pesan"] == str) {
-                if (isJSON(value.toString())) {
-                  if (tmpsnapshot != snapshot) {
-                    flag = false;
-                    //_scrollDown();
-                  }
+            await _loadData;
+          } else {
+            await _loadData.then((value) {
+              if (isJSON(snapshot.toString())) {
+                if (tmpsnapshot == snapshot) {
+                  //print("tes");
+
+                  //Map<String, dynamic> pesanupdated =
+                  //  jsonDecode(snapshot.toString());
+
+                  //print(pesanupdated[pesanupdated.length].toString());
+
+                  _scrollDown().then((value) => flag = false);
                 }
               }
             });
@@ -1384,7 +1402,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                 setState(() {
                   //_showToast(context, "Loading");
                   snapshot = [];
-                  _loadData();
+                  _loadData;
                   _scrollDown();
                 });
               },
@@ -1395,7 +1413,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
           children: <Widget>[
             Expanded(
               child: FutureBuilder(
-                  future: _loadData(),
+                  future: _loadData,
                   builder: (BuildContext ctx, AsyncSnapshot snapshot) =>
                       snapshot.hasData
                           ? ListView.builder(
@@ -1410,7 +1428,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                                                   ['idprofil'] ==
                                               "1"
                                           ? const AssetImage(
-                                              "assets/sitechonline.png")
+                                              "assets/hawilangonline.png")
                                           : const AssetImage(
                                               "assets/user.png")),
                                   title:
@@ -1444,7 +1462,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
 
                                     _looping(_controller.text.toString())
                                         .then((value) {
-                                      _loadData().then((value) {
+                                      _loadData.then((value) {
                                         _controller.clear();
                                         _scrollDown();
                                       });
@@ -1469,8 +1487,52 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
   }
 }
 
+/*
+class _HelpdeskPageState extends State<HelpdeskPage> {
+  final ScrollController _scrollcontroller = ScrollController();
+  final _future = Supabase.instance.client
+      .from('helpdesk')
+      .select();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder(
+                  future: _future,
+                  builder: (BuildContext ctx, AsyncSnapshot snapshot) =>
+                      snapshot.hasData
+                          ? ListView.builder(
+                              controller: _scrollcontroller,
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (BuildContext context, index) =>
+                                  Card(
+                                child: ListTile(
+                                  contentPadding: const EdgeInsets.all(10),
+                                  leading: Image(
+                                      image: snapshot.data![index]
+                                                  ['idprofil'] ==
+                                              "1"
+                                          ? const AssetImage(
+                                              "assets/hawilangonline.png")
+                                          : const AssetImage(
+                                              "assets/user.png")),
+                                  title:
+                                      snapshot.data![index]['idprofil'] == "1"
+                                          ? const Text("Admin")
+                                          : const Text("Guest"),
+                                  subtitle:
+                                      Text(snapshot.data![index]['pesan']),
+                                ),
+                              ),
+                            )
+                          : const Center(
+                              child: CircularProgressIndicator(),
+                            )),
+    );
+  }
+}*/
+
 class BantuanPage extends StatefulWidget {
-  const BantuanPage({Key? key}) : super(key: key);
+  const BantuanPage({super.key});
 
   @override
   State<BantuanPage> createState() => _BantuanPageState();

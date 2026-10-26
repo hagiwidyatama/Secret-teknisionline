@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(sitech_online LANGUAGES CXX)
+project(hawilang_online LANGUAGES CXX)
 
-set(BINARY_NAME "sitech_online")
+set(BINARY_NAME "hawilang_online")
 
 cmake_policy(SET CMP0063 NEW)
 
