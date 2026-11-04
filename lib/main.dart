@@ -17,6 +17,7 @@ Future<void> main() async {
   );
   runApp(MyApp());
 }
+final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -1257,7 +1258,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollcontroller = ScrollController();
 
-  final _loadData = Supabase.instance.client
+  final PostgrestFilterBuilder<PostgrestList> _loadData = Supabase.instance.client
       .from('helpdesk')
       .select();
 /*
@@ -1310,16 +1311,22 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     return posts;
   }*/
 
-  Future<http.Response> _kirimData(String pesan) {
+   String _kirimData(String pesan) {
     var resBody = {};
     resBody["idprofil"] = "2";
     resBody["pesan"] = pesan;
     String str = json.encode(resBody);
+/*
     String api = 'http://teknisionline.freedev.app/updatehelpdesk.php?json=$str';
     return http.get(Uri.parse(Uri.encodeFull(api)), headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-cache"
-    });
+    }
+    );*/
+
+      supabase.from('helpdesk').upsert(str);
+      return "OK";
+      
   }
 
   bool isJSON(String input) {
@@ -1456,8 +1463,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                               if (_controller.text != "") {
                                 tmpsnapshot = snapshot;
 
-                                _kirimData(_controller.text).then((value) {
-                                  if (value.body.toString() == "OK") {
+                                  if (_kirimData(_controller.text) == "OK") {
                                     //_showToast(context, "Kirim Pesan");
 
                                     _looping(_controller.text.toString())
@@ -1468,7 +1474,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                                       });
                                     });
                                   }
-                                });
+                                
                               }
                             },
                             icon: const Icon(Icons.send))),
