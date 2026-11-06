@@ -1258,9 +1258,13 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollcontroller = ScrollController();
 
-  final PostgrestFilterBuilder<PostgrestList> _loadData = Supabase.instance.client
-      .from('helpdesk')
-      .select();
+  Future<List> _loadData() async {
+    //List posts = [];
+    
+    PostgrestFilterBuilder<PostgrestList> posts = Supabase.instance.client.from('helpdesk').select();
+//    posts = json.encode(response as String);
+    return posts;
+  }
 /*
   Future<List> _loadData() async {
     List posts = [];
@@ -1311,11 +1315,11 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     return posts;
   }*/
 
-   String _kirimData(String pesan) {
-    var resBody = {};
-    resBody["idprofil"] = "2";
-    resBody["pesan"] = pesan;
-    String str = json.encode(resBody);
+   //String _kirimData(String pesan) {
+    //var resBody = {};
+    //resBody["idprofil"] = "2";
+    //resBody["pesan"] = pesan;
+    //String str = json.encode(resBody);
 /*
     String api = 'http://teknisionline.freedev.app/updatehelpdesk.php?json=$str';
     return http.get(Uri.parse(Uri.encodeFull(api)), headers: {
@@ -1324,10 +1328,27 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
     }
     );*/
 
-      supabase.from('helpdesk').upsert(str);
-      return "OK";
+      //supabase.from('helpdesk').upsert(str);
+      //return "OK";
       
+  //}
+
+  Future<String> _kirimData(String pesan) async {
+  final supabase = Supabase.instance.client;
+
+  try {
+    await supabase.from('helpdesk').insert({
+      'idprofil': '2',   // Pass as String or int depending on your column type (e.g., 2 if it's an integer)
+      'pesan': pesan,
+    });
+
+    print('Data inserted successfully!');
+    return "OK";
+  } catch (error) {
+    print('Error inserting data: $error');
+    return "ERR";
   }
+}
 
   bool isJSON(String input) {
     try {
@@ -1371,9 +1392,9 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
         //print("going on: $count");
         if (isJSON(snapshot.toString())) {
           if (tmpsnapshot == snapshot) {
-            await _loadData;
+             _loadData;
           } else {
-            await _loadData.then((value) {
+            await _loadData().then((value) {
               if (isJSON(snapshot.toString())) {
                 if (tmpsnapshot == snapshot) {
                   //print("tes");
@@ -1420,7 +1441,7 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
           children: <Widget>[
             Expanded(
               child: FutureBuilder(
-                  future: _loadData,
+                  future: _loadData(),
                   builder: (BuildContext ctx, AsyncSnapshot snapshot) =>
                       snapshot.hasData
                           ? ListView.builder(
@@ -1463,12 +1484,12 @@ class _HelpdeskPageState extends State<HelpdeskPage> {
                               if (_controller.text != "") {
                                 tmpsnapshot = snapshot;
 
-                                  if (_kirimData(_controller.text) == "OK") {
+                                  if (_kirimData(_controller.text.toString()).toString() == "OK") {
                                     //_showToast(context, "Kirim Pesan");
 
                                     _looping(_controller.text.toString())
                                         .then((value) {
-                                      _loadData.then((value) {
+                                      _loadData().then((value) {
                                         _controller.clear();
                                         _scrollDown();
                                       });
